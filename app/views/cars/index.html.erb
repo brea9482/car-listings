@@ -1,0 +1,15 @@
+<h1>Cars</h1>
+
+<ol>
+  <% @cars.each do |car| %>
+    <li>
+      <%= link_to "Car manufacturer: " + car.manufacturer.name, car_path(car) %><br/>
+      <%= "Car color: " + car.color %><br/>
+      <%= "Car mileage: #{car.mileage}" %><br/>
+      <%= "Car year: #{car.year}" %><br/>
+    </li>
+    <hr>
+  <% end %>
+</ol>
+
+<%= link_to "Back to manufacturers", root_path%>

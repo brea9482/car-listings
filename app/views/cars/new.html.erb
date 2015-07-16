@@ -1,0 +1,28 @@
+<h1>New Car</h1>
+  <% if @car.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+        <% @car.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<h3>Add a new car for this manufacturer below:</h3>
+<%= form_for @car do |f| %>
+  <%= f.label :manufacturer_id, "Manufacturer"%>
+  <%= f.collection_select(:manufacturer_id, Manufacturer.all, :id, :name)%>
+  <%= f.label :color, "Color"%>
+  <%= f.select :color, options_for_select(Car::COLOR) %>
+  <%= f.label :year %>
+  <%= f.number_field :year %>
+  <%= f.label :mileage %>
+  <%= f.number_field :mileage %>
+  <%= f.label :description %>
+  <%= f.text_field :description %>
+
+  <%= f.submit "Add a new car!", :class => "tiny button"  %>
+<% end %>
+
+<%= link_to "Back", root_path%>
